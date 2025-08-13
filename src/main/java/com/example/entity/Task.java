@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Task {
     private int id;
@@ -116,6 +117,19 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Task task = (Task)o;
+        return id == task.id &&
+                Objects.equals(name, task.name) &&
+                Objects.equals(createdDate, task.createdDate);
+    }
+
+    public int hashCode() {
+        return Objects.hash(id, name, createdDate);
     }
 
 
