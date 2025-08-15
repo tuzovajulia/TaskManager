@@ -1,10 +1,9 @@
-package com.example.entity;
+package com.example.entities;
 
 import java.util.List;
 import java.util.Objects;
 
-public class Person {
-    private int id;
+public class Person extends BaseEntity {
     private String firstName;
     private String lastName;
     private String email;
@@ -14,9 +13,8 @@ public class Person {
 
     }
 
-    public Person(int id, String firstName, String lastName, String email,
+    public Person(String firstName, String lastName, String email,
                   List<Task> tasks) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -26,20 +24,11 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", tasks=" + tasks +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -78,10 +67,10 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person)o;
-        return Objects.equals(id, person.id);
+        return Objects.equals(getId(), person.getId());
     }
 
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }
