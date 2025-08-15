@@ -1,10 +1,9 @@
-package com.example.entity;
+package com.example.entities;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Task {
-    private int id;
+public class Task extends BaseEntity {
     private String name;
     private String description;
     private Priority priority;
@@ -18,10 +17,9 @@ public class Task {
 
     }
 
-    public Task(int id, String name, Priority priority, String description,
+    public Task(String name, Priority priority, String description,
                 LocalDate createdDate, LocalDate endedDate, Person author,
                 Person assignee, Status status) {
-        this.id = id;
         this.name = name;
         this.priority = priority;
         this.description = description;
@@ -35,7 +33,6 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", priority=" + priority +
@@ -45,14 +42,6 @@ public class Task {
                 ", assignee='" + assignee + '\'' +
                 ", status=" + status +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -123,13 +112,13 @@ public class Task {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         Task task = (Task)o;
-        return id == task.id &&
+        return getId() == task.getId() &&
                 Objects.equals(name, task.name) &&
                 Objects.equals(createdDate, task.createdDate);
     }
 
     public int hashCode() {
-        return Objects.hash(id, name, createdDate);
+        return Objects.hash(getId(), name, createdDate);
     }
 
 
