@@ -2,7 +2,7 @@ package com.example.repositories;
 
 import com.example.entities.Task;
 
-public class TaskRepository extends AbstractRepository <Task> {
+public class TaskRepository extends AbstractRepository <Task> implements Repository<Task> {
     private static TaskRepository instance;
 
     private TaskRepository() {
