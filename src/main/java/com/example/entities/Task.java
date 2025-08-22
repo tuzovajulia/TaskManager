@@ -14,7 +14,6 @@ public class Task extends BaseEntity {
     private Status status;
 
     public Task() {
-
     }
 
     public Task(String name, Priority priority, String description,
@@ -28,20 +27,6 @@ public class Task extends BaseEntity {
         this.author = author;
         this.assignee = assignee;
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Task{" +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", priority=" + priority +
-                ", createdDate=" + createdDate +
-                ", endedDate=" + endedDate +
-                ", author='" + author + '\'' +
-                ", assignee='" + assignee + '\'' +
-                ", status=" + status +
-                '}';
     }
 
     public String getName() {
@@ -113,13 +98,24 @@ public class Task extends BaseEntity {
         if(o == null || getClass() != o.getClass()) return false;
         Task task = (Task)o;
         return getId() == task.getId() &&
-                Objects.equals(name, task.name) &&
-                Objects.equals(createdDate, task.createdDate);
+                Objects.equals(author, task.author);
     }
 
     public int hashCode() {
-        return Objects.hash(getId(), name, createdDate);
+        return Objects.hash(getId(), author);
     }
 
-
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                ", createdDate=" + createdDate +
+                ", endedDate=" + endedDate +
+                ", author=" + author +
+                ", assignee=" + assignee +
+                ", status=" + status +
+                '}';
+    }
 }
