@@ -39,12 +39,8 @@ public class AbstractRepository <T extends BaseEntity> implements Repository<T> 
         }
     }
 
-    public List<T> findAll() {
-        return new ArrayList<>(storage);
-    }
-
     public List<T> getAll() {
-        return findAll();
+        return new ArrayList<>(storage);
     }
 
     public List<T> getAll(Comparator<T> comparator) {
