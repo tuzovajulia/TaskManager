@@ -1,6 +1,6 @@
 package com.example.entities;
 
-public class BaseEntity {
+public abstract class BaseEntity {
     private int id;
 
     public int getId() {
