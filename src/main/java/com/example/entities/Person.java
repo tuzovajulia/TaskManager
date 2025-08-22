@@ -67,10 +67,11 @@ public class Person extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person)o;
-        return Objects.equals(getId(), person.getId());
+        return Objects.equals(getId(), person.getId()) &&
+                Objects.equals(email, person.email);
     }
 
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getId(), email);
     }
 }
