@@ -10,7 +10,6 @@ public class Person extends BaseEntity {
     private List<Task> tasks;
 
     public Person() {
-
     }
 
     public Person(String firstName, String lastName, String email,
