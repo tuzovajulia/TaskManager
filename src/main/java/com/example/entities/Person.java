@@ -1,9 +1,13 @@
 package com.example.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
-public class Person extends BaseEntity {
+public class Person extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -14,20 +18,11 @@ public class Person extends BaseEntity {
 
     public Person(String firstName, String lastName, String email,
                   List<Task> tasks) {
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.tasks = tasks;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", tasks=" + tasks +
-                '}';
     }
 
     public String getFirstName() {
@@ -58,7 +53,7 @@ public class Person extends BaseEntity {
         return tasks;
     }
 
-    void setTasks(List<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 
@@ -72,5 +67,15 @@ public class Person extends BaseEntity {
 
     public int hashCode() {
         return Objects.hash(getId(), email);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", tasks=" + tasks +
+                '}';
     }
 }
