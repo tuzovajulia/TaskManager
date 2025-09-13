@@ -5,6 +5,7 @@ import com.example.entities.BaseEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
+import java.util.UUID;
 
 public class AbstractRepository <T extends BaseEntity> implements Repository<T> {
     protected List<T> storage = new ArrayList<>();
@@ -13,9 +14,9 @@ public class AbstractRepository <T extends BaseEntity> implements Repository<T> 
         storage.add(entity);
     }
 
-    public T read(int id) {
+    public T read(UUID id) {
         for(T entity : storage) {
-            if(entity.getId() == id){
+            if(entity.getId().equals(id)){
                 return entity;
             }
         }
@@ -32,8 +33,8 @@ public class AbstractRepository <T extends BaseEntity> implements Repository<T> 
         throw new IllegalArgumentException("Entity with id " + entity.getId() + " not found");
     }
 
-    public void delete(int id) {
-        boolean removed = storage.removeIf(entity -> entity.getId() == id);
+    public void delete(UUID id) {
+        boolean removed = storage.removeIf(entity -> entity.getId().equals(id));
         if(!removed) {
             throw new IllegalArgumentException("Entity with id " + id + " not found");
         }
