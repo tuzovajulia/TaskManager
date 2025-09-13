@@ -1,13 +1,18 @@
 package com.example.entities;
 
-public abstract class BaseEntity {
-    private int id;
+import java.io.Serializable;
+import java.util.UUID;
 
-    public int getId() {
-        return id;
+public abstract class BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private final UUID id;
+
+    protected BaseEntity() {
+        this.id = UUID.randomUUID();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public UUID getId() {
+        return id;
     }
 }
