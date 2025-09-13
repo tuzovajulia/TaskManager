@@ -1,9 +1,13 @@
 package com.example.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
-public class Task extends BaseEntity {
+public class Task extends BaseEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String description;
     private Priority priority;
@@ -16,12 +20,13 @@ public class Task extends BaseEntity {
     public Task() {
     }
 
-    public Task(String name, Priority priority, String description,
+    public Task(String name, String description, Priority priority,
                 LocalDate createdDate, LocalDate endedDate, Person author,
                 Person assignee, Status status) {
+        super();
         this.name = name;
-        this.priority = priority;
         this.description = description;
+        this.priority = priority;
         this.createdDate = createdDate;
         this.endedDate = endedDate;
         this.author = author;
@@ -107,14 +112,23 @@ public class Task extends BaseEntity {
 
     @Override
     public String toString() {
+        String assigneeTasks = "";
+        if(assignee != null && assignee.getTasks() != null){
+            assigneeTasks = assignee.getTasks().stream()
+                    .map(task -> task.getName())
+                    .reduce((a, b) -> a + ", " + b)
+                    .orElse("");
+        }
+
         return "Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", priority=" + priority +
                 ", createdDate=" + createdDate +
                 ", endedDate=" + endedDate +
-                ", author=" + author +
-                ", assignee=" + assignee +
+                ", author=" + (author != null ? author.getFirstName() + " " + author.getLastName() : null) +
+                ", assignee=" + (assignee != null ? assignee.getFirstName() + " " + assignee.getLastName() : null) +
+                ", assigneeTasks = [" + assigneeTasks + "]" +
                 ", status=" + status +
                 '}';
     }
